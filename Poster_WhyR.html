@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+
+
+
+<title>R ile WebVR üzerinde Veri Görselleştirme</title>
+
+
+<script src="Poster_WhyR_files/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+
+
+<style>
+@page {
+size: 45in 38in;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0;
+font-size: 45px;
+width: 45in;
+height: 38in;
+padding: 0;
+text-align: justify;
+font-family: Palatino;
+}
+.poster_wrap {
+width: 45in;
+height: 38in;
+padding: 0cm;
+}
+.title_container {
+width: 45in;
+height: calc(38in * 0.15);
+overflow: hidden;
+background-color: #0091ff;
+border: 0 solid #ffffff;
+}
+.logo_left {
+float: left;
+width: 10%;
+height: 100%;
+background-color: #0091ff;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.logo_right {
+float: right;
+width: 10%;
+height: 100%;
+background-color: #0091ff;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.poster_title {
+text-align: center;
+position: relative;
+float: left;
+width: 80%;
+height: 100%;
+color: #FFFFFF;
+top: 50%;
+transform: translateY(-50%);
+-webkit-transform: translateY(-50%);
+}
+#title {
+font-family: Palatino;
+}
+/* unvisited link */
+a:link {
+color: #001d73;
+}
+.mybreak {
+  break-before: column;
+}
+/* visited link */
+a:visited {
+color: #001d73;
+}
+
+/* mouse over link */
+a:hover {
+color: #001d73;
+}
+
+/* selected link */
+a:active {
+color: #001d73;
+}
+.poster_body {
+-webkit-column-count: 3; /* Chrome, Safari, Opera */
+-moz-column-count: 3; /* Firefox */
+column-count: 3;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+-webkit-column-rule-width: 1mm;
+-moz-column-rule-width: 1mm;
+column-rule-width: 1mm;
+-webkit-column-rule-style: dashed;
+-moz-column-rule-style: dashed;
+column-rule-style: dashed;
+-webkit-column-rule-color: #0091ff;
+-moz-column-rule-color: #0091ff;
+column-rule-color: #0091ff;
+column-gap: 1em;
+padding-left: 0.5em;
+padding-right: 0.5em;
+height: 100%;
+color: #000000
+background-color: #ffffff;
+}
+.poster_title h1 {
+font-size: 100pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_body_wrap{
+width: calc(45in + 0 + 0);
+height: calc(38in * 0.83);
+padding-top: calc(38in * 0.005);
+padding-bottom: calc(38in * 0.01);
+background-color: #ffffff;
+}
+.poster_title h3 {
+color: #ffffff;
+font-size: 50pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_title h3 > sup {
+  font-size: 35pt;
+  margin-left: 0.02em;
+}
+.poster_title h5 {
+color: #FFFFFF;
+font-size: 35pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+img {
+margin-top: 2cm;
+margin-bottom: 0;
+}
+.section {
+  padding: 0.2em;
+}
+.poster_body h1 {
+text-align: center;
+color: #FFFFFF;
+font-size: 65pt;
+border: 2mm solid #0091ff;
+background-color: #0091ff;
+border-radius: 4mm 0mm;
+margin-top: 2mm;
+margin-bottom: 2mm;
+font-weight: normal;
+}
+.poster_body h2 {
+color: #000000;
+font-size: 40pt;
+padding-left: 4mm;
+font-weight: normal;
+}
+.span {
+width: 200%;
+}
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+/* align-items: center; */
+margin: auto;
+padding-left: 2cm;
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+.caption {
+font-size: 25pt;
+}
+.table caption {
+font-size: 25pt;
+padding-bottom: 3mm;
+
+}
+code {
+font-size: 1em;
+font-family: monospace;
+background-color: #ffffff24;
+color: #0091ff;
+padding: 1.2mm;
+border-radius: 2mm;
+}
+.poster_title code {
+font-size: 1em;
+}
+table {
+font-size: 40px;
+margin: auto;
+border-top: 3px solid #666;
+border-bottom: 3px solid #666;
+}
+table thead th {
+border-bottom: 3px solid #ddd;
+}
+td {
+padding: 8px;
+}
+th {
+padding: 15px;
+}
+caption {
+margin-bottom: 10px;
+}
+.poster_body p {
+margin-right: 4mm;
+margin-left: 4mm;
+margin-top: 6mm;
+margin-bottom: 10mm;
+}
+.poster_body ol {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+#ul {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+.references p {
+font-size: 20pt;
+}
+.orcid img {
+  width: 1em;
+}
+</style>
+</head>
+<body>
+
+
+<div class="poster_wrap">
+<div class="title_container">
+<!-- Left Logo  -->
+<div class="logo_left">
+<img src= 'https://cdn.discordapp.com/attachments/572448703122767873/952586125388677120/logo2001.png' style="width: 80%">
+</div>
+<!-- Poster Title -->
+<div class= "poster_title">
+<h1 id="title">R ile WebVR üzerinde Veri Görselleştirme</h1>
+<h3 id="author">Yakup Tarık Açan<sup>, <a class="orcid" href="https://orcid.org/0000-0002-8733-557X"><img src="https://raw.githubusercontent.com/brentthorne/posterdown/master/images/orcid.jpg"></a></sup>, Dr. Öğr. Üy. Elif Özge Özdamar<sup></sup></h3><br>
+<h5 id="affiliation"><sup></sup> İstatistik Bölümü, Mimar Sinan Güzel Sanatlar Üniversitesi</h5>
+</div>
+<!-- Right Logo  -->
+<div class="logo_right">
+<img src=https://cdn.discordapp.com/attachments/572448703122767873/952562351368974416/logo200.png style="width: 80%">
+</div>
+</div>
+
+<div class='poster_body_wrap'>
+<div class='poster_body'>
+<div id="sanal-gerçeklik-nedir" class="section level1">
+<h1>Sanal Gerçeklik Nedir?</h1>
+<p>Sanal gerçeklik kısaca, içinde ekran bulunan bir kask ve sensörlerle donatılmış eldivenler gibi özel
+elektronik ekipmanlar kullanan bir kişi tarafından fiziksel bir şekilde etkileşime girebilen, bilgisayar
+tarafından oluşturulan üç boyutlu bir görüntü ya da ortam simülasyonu olarak tanımlanabilir.</p>
+<div id="sanallaştırılmış-gerçeklik-türleri" class="section level2">
+<h2>Sanallaştırılmış Gerçeklik Türleri</h2>
+<ol style="list-style-type: decimal">
+<li><p>Karma Gerçeklik (Mixed Reality):
+Fiziksel ve dijital nesnelerin bir arada bulunduğu ve gerçek zamanlı olarak etkileşime girdiği yeni
+ortamlar ve görselleştirmeler üretmek için gerçek ve sanal dünyaların birleşimidir.</p></li>
+<li><p>Artırılmış gerçeklik (Augmented Reality):
+Dijital görsel öğeler, ses veya teknoloji aracılığıyla sağlanan diğer duyusal uyaranların
+kullanımıyla elde edilen gerçek fiziksel dünyanın geliştirilmiş bir versiyonudur.</p></li>
+</ol>
+<p>Özellikle mobil bilgi işlem ve iş uygulamalarıyla uğraşan şirketler arasında büyüyen bir trenddir.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Genişletilmiş gerçeklik (Extended Reality):</li>
+</ol>
+<p>Sanal, Arttırılmış ve Karma gerçeklikleri aynı şemsiye altında toplayan kavramdır. XR’ daki ‘X’
+harfi kullanılan teknolojiye göre değişiklik gösterir. XR, sanal gerçeklik (VR), artırılmış gerçeklik
+(AR) ve karma gerçeklik (MR) olmak üzere, bilgisayarla değiştirilmiş gerçekliğin tüm çeşitli
+biçimlerini kapsayan ana kategoridir.</p>
+</div>
+</div>
+<div id="örnekler" class="section level1">
+<h1>Örnekler</h1>
+<p>Sanal Gerçekliğin Veri Görselleştirme Üzerinde Örnekleri:</p>
+<p><a href="https://medium.com/inborn-experience/data-visualization-in-virtual-reality-a-vr-demo-project-a31c577aaefc">Data Visualization in Virtual Reality – A VR Demo Project</a></p>
+</div>
+<div id="webvr-nedir" class="section level1">
+<h1>WebVR nedir?</h1>
+<p>WebVR, VR uygulamalarını ve görüntülerini herhangi bir VR cihazı gereksinimi olmadan tarayıcı
+üzerinde görüntülemeyi sağlayan bir API protokolüdür.</p>
+<p>WebVR günümüzde gelişip WebXR’ a evrilmiştir.</p>
+<p>WebXR; genişletilmiş gerçek yani hem sanal, hem arttırılmış, hem de karma gerçekliklerin
+görüntülenmesi sağlayan API protokolüdür. Günümüzde WebVR, WebXR’ ın altında olsa da sanal
+gerçeklik kısmından WebVR olarak sözlendirilmeye devam etmektedir (Ye, Hu, Zhou, Lei, &amp; Guan,
+2018).</p>
+</div>
+<div id="çalışmanın-amacı" class="section level1">
+<h1>Çalışmanın Amacı</h1>
+<p>Bu çalışmanın amacı; R istatistiksel programlama dilini kullanarak, sanal gerçeklik ile
+interaktif bir veri görselleştirme platformu oluşturmaktır. Platformu kullanan kişi, sanal
+gözlük ve kumanda yardımı ile üç boyutlu bir ortam içine girerek veri setleri üzerinde grafik
+türü, renk, boyut, şekil gibi görselleştirme parametrelerini değiştirebilecek ve böylelikle
+grafik ile etkileşime girebilecektir.</p>
+<p>Çalışma sonunda gerçekleştirilmesi amaçlanan uygulama; büyük ekran bir monitör ve
+kumandalı sanal gözlükler ile birlikte, üniversitemizin içindeki çeşitli tanıtım ve faaliyetlerde
+kullanılacaktır. Ayrıca üniversitemizin güzel sanatlar üniversitesi olmasından dolayı,
+disiplinler arası benzer öğrenci projelerinde kullanılmak üzere altyapı desteği sağlamış
+olacaktır.</p>
+</div>
+<div id="swot-analizi" class="section level1">
+<h1>SWOT Analizi</h1>
+<p><img src="swot.png" id="id" class="class" width="1300" height="500" /></p>
+</div>
+<div id="kullanılan-r-paketleri" class="section level1">
+<h1>Kullanılan R Paketleri</h1>
+<p>shiny - shinyaframe - ggplot2 - tidyverse - scales</p>
+</div>
+<div id="uygulama" class="section level1">
+<h1>Uygulama</h1>
+<p><a href="https://github.com/TheLost27/Data-Visualization-With-WebVR">WebVR ile Veri Görselleştirme</a></p>
+<p><img src="Demo_App.gif" id="id" class="class" width="1300" height="500" /></p>
+</div>
+<div id="aşamalar" class="section level1">
+<h1>Aşamalar</h1>
+<p>Shiny üzerinden uygulamayı kullanan kişiler, mtcars, iris, diamonds gibi tüm R kullanıcıların
+bildikleri belirlenmiş birkaç örnek R paket veri setlerini ya da kendi veri setlerini sanal gerçeklik ile
+görselleştirebileceklerdir. Böylelikle sistemi algılayacaklardır.</p>
+<p>Grafikler, R programlama dilinin ilgili kütüphaneleri ile oluşturulduktan sonra, “Shiny” ve
+“shinyaframe” kütüphaneleri ile tarayıcı üzerinden sanal gerçeklik uygulamasına
+dönüştürülecektir.</p>
+<p>Projemizde R kullanmamızın nedenleri; R kullanıcılarına farklı uygulamalar da yapabileceklerinin
+gösterebilmek, R’ ın güçlü grafik motorunun olması ve farklı grafik oluşturma olanakları
+sunmasıdır.</p>
+</div>
+<div id="bilgi" class="section level1">
+<h1>Bilgi</h1>
+<blockquote>
+<p>Bu Proje TÜBİTAK 2209-A Üniversite Öğrencileri Araştırma Projeleri Destekleme Programı 2021/2’ de değerlendirme aşamasındadır.</p>
+</blockquote>
+<p>Danışman: Dr. Öğr. Üy. Elif Özge Özdamar</p>
+</div>
+<div id="kaynakça" class="section level1">
+<h1>Kaynakça</h1>
+<p>• Chen, Jim X. “Data visualization and virtual reality.” Handbook of Statistics 24 (2005): 539-563.
+• Donalek, C., Djorgovski, S. G., Cioc, A., Wang, A., Zhang, J., Lawler, E., … &amp; Longo, G. (2014, October). Immersive and collaborative data visualization using virtual
+reality platforms. In 2014 IEEE International Conference on Big Data (Big Data) (pp. 609-614). IEEE.
+• Dudkin, I. (2021, 12 10). Augmented And Virtual Reality Data Visualization. skywell software: <a href="https://skywell.software/blog/augmented-and-virtual-reality-datavisualization/" class="uri">https://skywell.software/blog/augmented-and-virtual-reality-datavisualization/</a> adresinden alındı.
+• Gossett, S. (2021, 12 19). Is VR the Next Frontier in Data Visualization? builtin beta: <a href="https://builtin.com/data-science/ar-vr-data-visualization" class="uri">https://builtin.com/data-science/ar-vr-data-visualization</a> adresinden alındı
+• Kates, B. (2021, 11 29). Immersive Analytics: Data Visualization in AR/VR. compassred: <a href="https://www.compassred.com/data-journal/data-visualization-in-arvr" class="uri">https://www.compassred.com/data-journal/data-visualization-in-arvr</a>
+adresinden alındı
+• Mann, S., Furness, T., Yuan, Y., Iorio, J., &amp; Wang, Z. (2018, 4 20). All Reality: Virtual, Augmented, Mixed (X), Mediated (X,Y), and Multimediated Reality. arxiv:
+<a href="https://arxiv.org/abs/1804.08386" class="uri">https://arxiv.org/abs/1804.08386</a> adresinden alındı
+• Mboya, A. M. (2021, 11 30). Data Visualization in Virtual Reality — A VR Demo Project. medium: <a href="https://medium.com/inborn-experience/data-visualization-in-virtualreality-a-vr-demo-project-a31c577aaefc" class="uri">https://medium.com/inborn-experience/data-visualization-in-virtualreality-a-vr-demo-project-a31c577aaefc</a> adresinden alındı
+• Nguyen, S. (2021, 12 5). How AR and VR can transform the gaming industry? mageplaza: <a href="https://www.mageplaza.com/blog/how-ar-vr-transform-gamingindustry.html" class="uri">https://www.mageplaza.com/blog/how-ar-vr-transform-gamingindustry.html</a> adresinden alındı
+• Nichols, G. (2021, 12 1). Data visualization via VR and AR: How we’ll interact with tomorrow’s data. zdnet: <a href="https://www.zdnet.com/article/data-visualization-via-vrand-ar-how-well-interact-with-tomorrows-data/" class="uri">https://www.zdnet.com/article/data-visualization-via-vrand-ar-how-well-interact-with-tomorrows-data/</a> adresinden alındı
+• Thomas, L. (2021, 12 15). Applications of Virtual Reality in Medicine . News Medical Life Sciences: <a href="https://www.news-medical.net/health/Applications-of-VirtualReality-in-Medicine.aspx" class="uri">https://www.news-medical.net/health/Applications-of-VirtualReality-in-Medicine.aspx</a> adresinden alındı
+• Vasant, I. (2021, 12 3). Data Visualization in Virtual Reality. towardsdatascience: <a href="https://towardsdatascience.com/data-visualization-in-virtual-reality-32408475b66" class="uri">https://towardsdatascience.com/data-visualization-in-virtual-reality-32408475b66</a>
+adresinden alındı
+• William Murphy (2017). shinyaframe: ‘WebVR’ Data Visualizations with ‘RStudio Shiny’ and ‘Mozilla A-Frame’. R package version 1.0.1. <a href="https://CRAN.Rproject.org/package=shinyaframe" class="uri">https://CRAN.Rproject.org/package=shinyaframe</a>
+• Ye, Q., Hu, W., Zhou, H., Lei, Z., &amp; Guan, S. (2018). VR Interactive Feature of HTML5-based WebVR Control Laboratory by Using Head-mounted Display.
+International Journal of Online Engineering, 14(3), 20-33. International Journal of Online Engineering. adresinden alındı
+• Zhang, X. (2017). Virtual Reality Application in Data Visualization and Analysis. Köln: TH Köln</p>
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+</body>
+</html>
