@@ -1,9 +1,11 @@
 
 if (interactive()) {
     library(shiny)
+    library(tidyverse)
     library(dplyr)
     library(scales)
     library(shinyaframe)
+    library(htmltools)
     data(mtcars)
     araba <- as.tibble(mtcars)
     araba$cyl_cat[araba$cyl==4] <- "V4"
@@ -25,7 +27,16 @@ if (interactive()) {
             # server output variable name
             outputId = "mydatascene",
             # add backdrop
-            environment = "",
+            environment = tags$script(
+              tags$source(
+                src = "https://unpkg.com/aframe-environment-component@1.3.1/dist/aframe-environment-component.min.js"
+              )
+            ),
+            
+            atags$entity(
+              `environment`= "preset: forest; groundColor: #445"
+            ),
+        
             # gg-aframe plot syntax
             atags$entity(
                 # an empty string sets attributes with no additional properties
